@@ -1,6 +1,6 @@
 # Main Dynasty Class
 
-aws = require('aws-sdk')
+aws = {}
 _ = require('lodash')
 Promise = require('bluebird')
 debug = require('debug')('dynasty')
@@ -20,9 +20,11 @@ Table = lib.Table
 
 class Dynasty
 
-  constructor: (credentials, url) ->
+  constructor: (awsObject, credentials, url) ->
     debug "dynasty constructed."
     credentials.region = credentials.region || 'us-east-1'
+    
+    aws = awsObject
 
     # Lock API version
     credentials.apiVersion = '2012-08-10'
